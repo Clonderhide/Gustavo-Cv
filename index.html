@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gustavo Adolfo Dávila Vázquez | Fullstack Developer</title>
+    <meta name="description" content="Portfolio de Gustavo Adolfo Dávila Vázquez, Desarrollador Fullstack.">
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config for Custom Aesthetics -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#b91c1c', // Red 700
+                        secondary: '#991b1b', // Red 800
+                        dark: '#110505', // Very dark red-tinted black
+                        darker: '#060000', // Almost pure black
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons (Phosphor Icons - Clean & Modern) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        .font-display {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.5);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #f87171 0%, #7f1d1d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Ambient Background Blobs (Premium feel) */
+        @keyframes blob {
+            0% {
+                transform: translate(0px, 0px) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
+        }
+
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+
+        /* Card Hover Effects */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .hover-lift:hover {
+            box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-50 text-slate-800 dark:bg-darker dark:text-slate-300 transition-colors duration-300 overflow-x-hidden selection:bg-primary selection:text-white">
+
+    <!-- Ambient Blobs -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <div
+            class="absolute top-0 left-1/4 w-96 h-96 bg-red-800 rounded-full mix-blend-multiply filter blur-[128px] opacity-30 dark:opacity-20 animate-blob">
+        </div>
+        <div
+            class="absolute top-0 right-1/4 w-96 h-96 bg-red-900 rounded-full mix-blend-multiply filter blur-[128px] opacity-30 dark:opacity-20 animate-blob animation-delay-2000">
+        </div>
+        <div
+            class="absolute -bottom-32 left-1/3 w-96 h-96 bg-rose-950 rounded-full mix-blend-multiply filter blur-[128px] opacity-30 dark:opacity-20 animate-blob animation-delay-4000">
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 top-4" id="navbar">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="glass rounded-2xl px-6 py-4 flex items-center justify-between shadow-sm">
+                <a href="#" class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white group">
+                    GD<span class="text-primary group-hover:text-secondary transition-colors">.</span>
+                </a>
+
+                <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                    <a href="#about" class="hover:text-primary transition-colors">Sobre mí</a>
+                    <a href="#skills" class="hover:text-primary transition-colors">Habilidades</a>
+                    <a href="#experience" class="hover:text-primary transition-colors">Experiencia</a>
+                    <!-- <a href="#projects" class="hover:text-primary transition-colors">Proyectos</a> -->
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <button id="theme-toggle"
+                        class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300"
+                        aria-label="Toggle Theme">
+                        <i class="ph ph-moon text-xl dark:hidden"></i>
+                        <i class="ph ph-sun text-xl hidden dark:block"></i>
+                    </button>
+                    <a href="#contact"
+                        class="hidden md:inline-flex items-center justify-center bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-5 py-2.5 rounded-xl text-sm font-medium transition-transform hover:scale-105 active:scale-95 shadow-lg">
+                        Contactar <i class="ph ph-paper-plane-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-6 pt-32 pb-20">
+
+        <!-- Hero Section -->
+        <section class="min-h-[85vh] flex flex-col md:flex-row justify-between items-center gap-12 reveal active pt-10">
+            <div class="flex-1 mr-auto">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300 text-xs font-semibold uppercase tracking-wider mb-6">
+                    <span class="relative flex h-2 w-2">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                    </span>
+                    Disponible para nuevos proyectos
+                </div>
+
+                <h1
+                    class="text-5xl md:text-7xl font-bold font-display text-slate-900 dark:text-white leading-tight mb-6 tracking-tight">
+                    Construyendo <br />
+                    <span class="text-gradient">experiencias digitales</span><br />
+                    de alto impacto.
+                </h1>
+
+                <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mb-10 leading-relaxed">
+                    Hola, soy <strong class="text-slate-900 dark:text-white font-medium">Gustavo Adolfo Dávila
+                        Vázquez</strong>.
+                    Ingeniero y Desarrollador Fullstack apasionado por crear interfaces limpias, arquitecturas robustas
+                    y soluciones que escalan.
+                </p>
+
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://wa.me/528441382128" target="_blank"
+                        class="inline-flex items-center justify-center bg-[#25D366] hover:bg-[#1da851] text-white px-7 py-3.5 rounded-xl font-medium transition-all hover:shadow-lg hover:shadow-[#25D366]/30 hover:-translate-y-1">
+                        WhatsApp <i class="ph ph-whatsapp-logo ml-2 text-lg"></i>
+                    </a>
+                    <a href="#contact"
+                        class="inline-flex items-center justify-center bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 px-7 py-3.5 rounded-xl font-medium transition-all hover:-translate-y-1">
+                        Contactar <i class="ph ph-envelope-simple ml-2 text-lg"></i>
+                    </a>
+                </div>
+
+                <div class="mt-16 flex items-center gap-6 text-slate-500 dark:text-slate-400">
+                    <span class="text-sm font-medium uppercase tracking-widest">Tech Stack</span>
+                    <div class="h-px bg-slate-200 dark:bg-slate-800 flex-grow max-w-[100px]"></div>
+                    <div class="flex gap-4 text-2xl">
+                        <i class="ph ph-file-html hover:text-primary transition-colors cursor-pointer"
+                            title="HTML5"></i>
+                        <i class="ph ph-file-css hover:text-primary transition-colors cursor-pointer"
+                            title="Tailwind CSS"></i>
+                        <i class="ph ph-file-js hover:text-primary transition-colors cursor-pointer"
+                            title="JavaScript"></i>
+                        <i class="ph ph-database hover:text-primary transition-colors cursor-pointer"
+                            title="Databases"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-1 w-full max-w-sm md:max-w-md relative mt-4 md:mt-0 flex justify-center perspective-1000">
+                <!-- Sinister decoration -->
+                <div
+                    class="absolute inset-0 bg-gradient-to-tr from-red-600 to-red-900 rounded-[3rem] blur-2xl opacity-40 animate-pulse">
+                </div>
+                <div
+                    class="absolute -inset-2 bg-gradient-to-br from-red-500/20 to-black/80 rounded-[3rem] blur-md transform rotate-3">
+                </div>
+
+                <img src="perfil.jpg" alt="Gustavo Dávila"
+                    class="relative z-10 w-full rounded-[3rem] border border-red-900/40 object-cover shadow-2xl hover:scale-[1.02] transition-transform duration-500 ease-in-out"
+                    style="aspect-ratio: 1/1.2;" />
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 reveal pt-24">
+            <h2 class="text-3xl md:text-4xl font-bold font-display text-slate-900 dark:text-white mb-8">Sobre mí <span
+                    class="text-primary">.</span></h2>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1 glass-card rounded-3xl p-8 relative overflow-hidden group">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6 relative z-10">
+                        Soy un desarrollador con mentalidad de producto. Me especializo en el ecosistema JavaScript /
+                        Fullstack y tengo un gran enfoque en el diseño UI/UX. Creo que un buen código no solo debe
+                        funcionar, sino ser fácil de mantener y de usar.
+                    </p>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed relative z-10">
+                        Cuento con <strong class="text-slate-900 dark:text-white font-medium">Inglés Avanzado</strong>,
+                        lo que me permite colaborar fluídamente en equipos internacionales, consumir documentación sin
+                        barreras y participar en proyectos globales.
+                    </p>
+                </div>
+
+                <div class="order-1 md:order-2 grid grid-cols-2 gap-4">
+                    <div class="glass-card rounded-2xl p-6 hover-lift text-center">
+                        <i class="ph ph-code text-4xl text-primary mb-3"></i>
+                        <h3 class="font-display font-bold text-xl text-slate-900 dark:text-white">Clean Code</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Prácticas modernas y arquitectura</p>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6 hover-lift text-center translate-y-6">
+                        <i class="ph ph-devices text-4xl text-secondary mb-3"></i>
+                        <h3 class="font-display font-bold text-xl text-slate-900 dark:text-white">Responsive</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Pixel-perfect en cada pantalla</p>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6 hover-lift text-center">
+                        <i class="ph ph-globe text-4xl text-indigo-500 mb-3"></i>
+                        <h3 class="font-display font-bold text-xl text-slate-900 dark:text-white">Bilingüe</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Inglés avanzado (C1)</p>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6 hover-lift text-center translate-y-6">
+                        <i class="ph ph-rocket-launch text-4xl text-purple-500 mb-3"></i>
+                        <h3 class="font-display font-bold text-xl text-slate-900 dark:text-white">Performance</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Optimización continua</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 reveal pt-24">
+            <h2 class="text-3xl md:text-4xl font-bold font-display text-slate-900 dark:text-white mb-12">Habilidades
+                Técnicas <span class="text-primary">.</span></h2>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Frontend -->
+                <div class="glass-card rounded-3xl p-8 hover-lift">
+                    <div
+                        class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-500/10 flex items-center justify-center mb-6">
+                        <i class="ph ph-browser text-2xl text-blue-600 dark:text-blue-400"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-slate-900 dark:text-white mb-4">Frontend</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                            <i class="ph ph-check-circle text-primary"></i> HTML5, CSS3, Modern JS
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                            <i class="ph ph-check-circle text-primary"></i> Tailwind CSS
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                            <i class="ph ph-check-circle text-primary"></i> UI/UX Design Principles
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                            <i class="ph ph-check-circle text-primary"></i> Responsive Design
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Backend -->
+                <div class="glass-card rounded-3xl p-8 hover-lift md:translate-y-4">
+                    <div
+                        class="w-12 h-12 rounded-full bg-green-100 dark:bg-green-500/10 flex items-center justify-center mb-6">
+                        <i class="ph ph-hard-drives text-2xl text-green-600 dark:text-green-400"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-slate-900 dark:text-white mb-4">Backend & DB</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                            <i class="ph ph-check-circle text-primary"></i> Node.js / Express
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                            <i class="ph ph-check-circle text-primary"></i> Bases de Datos SQL
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                            <i class="ph ph-check-circle text-primary"></i> NoSQL (MongoDB)
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                            <i class="ph ph-check-circle text-primary"></i> APIs RESTful
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Herramientas -->
+                <div class="glass-card rounded-3xl p-8 hover-lift md:translate-y-8">
+                    <div
+                        class="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-500/10 flex items-center justify-center mb-6">
+                        <i class="ph ph-wrench text-2xl text-purple-600 dark:text-purple-400"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-slate-900 dark:text-white mb-4">Herramientas</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                            <i class="ph ph-check-circle text-primary"></i> Git & GitHub
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                            <i class="ph ph-check-circle text-primary"></i> Terminal / Bash
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                            <i class="ph ph-check-circle text-primary"></i> Figma (Diseño)
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                            <i class="ph ph-check-circle text-primary"></i> Vercel / Netlify
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experiencia -->
+        <section id="experience" class="py-20 reveal pt-24">
+            <h2 class="text-3xl md:text-4xl font-bold font-display text-slate-900 dark:text-white mb-12">Experiencia
+                <span class="text-primary">.</span></h2>
+
+            <div
+                class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 dark:before:via-slate-700 before:to-transparent">
+
+                <!-- Trabajo 1 -->
+                <div
+                    class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div
+                        class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-50 dark:border-darker bg-primary text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-transform group-hover:scale-125">
+                        <i class="ph ph-briefcase"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-card rounded-2xl p-6 hover-lift">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                            <h3 class="font-display font-bold text-xl text-slate-900 dark:text-white">Desarrollador
+                                Fullstack Senior</h3>
+                            <span
+                                class="text-sm text-primary font-medium mt-1 md:mt-0 bg-primary/10 px-3 py-1 rounded-full w-fit">2023
+                                - Presente</span>
+                        </div>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 font-medium">TechNova Solutions</p>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                            Liderazgo en el desarrollo de plataformas SaaS escalables. Arquitectura de interfaces
+                            modernas usando metodologías ágiles. Reducción del tiempo de carga inicial en un 40%
+                            mediante optimización de assets y lazy loading.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Trabajo 2 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div
+                        class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-50 dark:border-darker bg-slate-300 dark:bg-slate-700 text-slate-600 dark:text-slate-300 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-transform group-hover:scale-125">
+                        <i class="ph ph-code"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-card rounded-2xl p-6 hover-lift">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                            <h3 class="font-display font-bold text-xl text-slate-900 dark:text-white">Frontend Developer
+                            </h3>
+                            <span
+                                class="text-sm text-slate-500 font-medium mt-1 md:mt-0 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full w-fit">2021
+                                - 2023</span>
+                        </div>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 font-medium">Agencia Creativa Web</p>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                            Desarrollo de landing pages y portfolios de alto impacto visual. Implementación de diseños
+                            pixel-perfect desde Figma a código usando HTML, CSS y Tailwind. Integración de animaciones
+                            avanzadas.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Proyectos oculto temporalmente
+        <section id="projects" class="py-20 reveal pt-24">
+            <h2 class="text-3xl md:text-4xl font-bold font-display text-slate-900 dark:text-white mb-4">Proyectos Destacados <span class="text-primary">.</span></h2>
+            <p class="text-slate-600 dark:text-slate-400 mb-12 max-w-2xl">Una selección de proyectos recientes que demuestran mi experiencia en diseño frontend y arquitectura backend.</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+                
+                <!- - Proyecto 1 - ->
+                <div class="glass-card rounded-3xl overflow-hidden group hover-lift flex flex-col">
+                    <div class="h-64 bg-slate-200 dark:bg-slate-800 relative overflow-hidden flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 group-hover:scale-110 transition-transform duration-700"></div>
+                        <i class="ph ph-shopping-bag text-6xl text-slate-400 dark:text-slate-600 group-hover:text-primary transition-colors duration-500 z-10"></i>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col">
+                        <div class="flex gap-2 mb-4">
+                            <span class="text-xs font-semibold px-2 py-1 rounded-md bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300">E-Commerce</span>
+                            <span class="text-xs font-semibold px-2 py-1 rounded-md bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">Tailwind</span>
+                        </div>
+                        <h3 class="font-display font-bold text-2xl text-slate-900 dark:text-white mb-2">Nexus Store</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-6 text-sm flex-1">Plataforma premium de e-commerce con carrito dinámico, animaciones fluidas, y panel de administración completo.</p>
+                        <a href="#" class="inline-flex items-center gap-2 text-primary font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors w-fit">
+                            Ver proyecto <i class="ph ph-arrow-up-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!- - Proyecto 2 - ->
+                <div class="glass-card rounded-3xl overflow-hidden group hover-lift flex flex-col">
+                    <div class="h-64 bg-slate-200 dark:bg-slate-800 relative overflow-hidden flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 group-hover:scale-110 transition-transform duration-700"></div>
+                        <i class="ph ph-chart-line-up text-6xl text-slate-400 dark:text-slate-600 group-hover:text-emerald-500 transition-colors duration-500 z-10"></i>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col">
+                        <div class="flex gap-2 mb-4">
+                            <span class="text-xs font-semibold px-2 py-1 rounded-md bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300">Dashboard</span>
+                            <span class="text-xs font-semibold px-2 py-1 rounded-md bg-yellow-50 text-yellow-600 dark:bg-yellow-900/30 dark:text-yellow-400">JavaScript</span>
+                        </div>
+                        <h3 class="font-display font-bold text-2xl text-slate-900 dark:text-white mb-2">Fintech Analytics</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-6 text-sm flex-1">Dashboard interactivo para análisis financiero en tiempo real. Soporte para modo oscuro y visualización de datos con gráficos personalizados.</p>
+                        <a href="#" class="inline-flex items-center gap-2 text-primary font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors w-fit">
+                            Ver proyecto <i class="ph ph-arrow-up-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        -->
+
+        <!-- Idiomas & Extra -->
+        <section class="py-20 reveal">
+            <div
+                class="glass-card rounded-3xl p-10 md:p-14 bg-gradient-to-br from-indigo-600 to-purple-700 relative overflow-hidden text-center md:text-left flex flex-col md:flex-row items-center justify-between border-none">
+
+                <!-- Background pattern -->
+                <div class="absolute inset-0 opacity-10"
+                    style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;">
+                </div>
+
+                <div class="relative z-10 max-w-lg mb-8 md:mb-0">
+                    <h2 class="text-3xl md:text-4xl font-bold font-display text-white mb-4">Comunicación Global</h2>
+                    <p class="text-indigo-100 text-lg">Dominio avanzado del <strong class="text-white">idioma
+                            Inglés</strong>. Experiencia comprobada trabajando con documentación técnica en inglés y
+                        equipos multidisciplinarios de todo el mundo.</p>
+                </div>
+
+                <div
+                    class="relative z-10 flex flex-col items-center p-6 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20">
+                    <div class="text-5xl font-bold font-display text-white mb-1">C1</div>
+                    <div class="text-indigo-200 font-medium tracking-wide uppercase text-sm">Nivel Avanzado</div>
+                    <div class="flex gap-1 mt-3">
+                        <div class="w-8 h-1.5 rounded-full bg-white"></div>
+                        <div class="w-8 h-1.5 rounded-full bg-white"></div>
+                        <div class="w-8 h-1.5 rounded-full bg-white"></div>
+                        <div class="w-8 h-1.5 rounded-full bg-white/30"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto -->
+        <section id="contact" class="py-24 reveal pt-24 text-center">
+            <h2 class="text-3xl md:text-5xl font-bold font-display text-slate-900 dark:text-white mb-6">¿Trabajamos
+                juntos?</h2>
+            <p class="text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto mb-10">
+                Actualmente estoy abierto a nuevas oportunidades. Si tienes una pregunta o simplemente quieres saludar,
+                ¡mi bandeja de entrada siempre está abierta!
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-6 items-center">
+                <a href="https://wa.me/528441382128" target="_blank"
+                    class="inline-flex items-center justify-center bg-[#25D366] hover:bg-[#1da851] text-white px-8 py-4 rounded-2xl font-medium text-lg transition-transform hover:scale-105 shadow-xl hover:shadow-2xl w-full sm:w-auto">
+                    <i class="ph ph-whatsapp-logo mr-3 text-2xl"></i> +52 844 138 21 28
+                </a>
+                <a href="mailto:hola@ejemplo.com"
+                    class="inline-flex items-center justify-center bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-8 py-4 rounded-2xl font-medium text-lg transition-transform hover:scale-105 shadow-xl hover:shadow-2xl w-full sm:w-auto">
+                    Escríbeme un Email <i class="ph ph-paper-plane-tilt ml-3 text-xl"></i>
+                </a>
+            </div>
+
+            <div class="flex justify-center gap-6 mt-16">
+                <a href="#"
+                    class="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary hover:-translate-y-1 transition-all">
+                    <i class="ph ph-github-logo text-2xl"></i>
+                </a>
+                <a href="#"
+                    class="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-blue-500 hover:-translate-y-1 transition-all">
+                    <i class="ph ph-linkedin-logo text-2xl"></i>
+                </a>
+                <a href="#"
+                    class="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-purple-500 hover:-translate-y-1 transition-all">
+                    <i class="ph ph-dribbble-logo text-2xl"></i>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer
+        class="border-t border-slate-200 dark:border-slate-800/50 py-8 text-center bg-slate-50 dark:bg-darker transition-colors duration-300 relative z-10">
+        <p class="text-slate-500 dark:text-slate-400 text-sm font-medium">
+            Diseñado & Desarrollado por <span class="text-slate-800 dark:text-slate-200 font-bold">Gustavo Adolfo Dávila
+                Vázquez</span> © <span id="year"></span>
+        </p>
+    </footer>
+
+    <!-- Logic (Vanilla JS) -->
+    <script>
+        // Set Current Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Dark Mode Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // Initial Theme Check
+        if (localStorage.getItem('theme') === 'light') {
+            htmlElement.classList.remove('dark');
+        } else {
+            // Default to dark mode for premium feel
+            htmlElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2', 'shadow-sm');
+                navbar.classList.remove('py-4');
+                // Subtle background tweak for scrolled navbar
+                navbar.firstElementChild.firstElementChild.classList.add('bg-white/90', 'dark:bg-slate-900/90');
+                navbar.firstElementChild.firstElementChild.classList.remove('glass');
+            } else {
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2', 'shadow-sm');
+                navbar.firstElementChild.firstElementChild.classList.remove('bg-white/90', 'dark:bg-slate-900/90');
+                navbar.firstElementChild.firstElementChild.classList.add('glass');
+            }
+        });
+
+        // Scroll Reveal Animation (Intersection Observer)
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Optional: Stop observing once revealed
+                    // observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const revealOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
+
+    </script>
+</body>
+
+</html>
